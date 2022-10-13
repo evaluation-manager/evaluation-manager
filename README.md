@@ -1,6 +1,6 @@
 # Tracker Front-end com Svelte
 
-Front-end utilizando o framework Svelte para a aplicação Tracker.
+Front-end utilizando a biblioteca react para a aplicação de avaliação.
 
 ## Dependências
 
