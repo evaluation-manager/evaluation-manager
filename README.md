@@ -5,7 +5,7 @@ Front-end utilizando o framework Svelte para a aplicação Tracker.
 ## Dependências
 
 * Repositório [Nginx Proxy + Let's Encrypt](https://github.com/giovannialo/nginx-proxy-letsencrypt).
-* Repositório [Tracker API](https://github.com/Tracker-Message/api)
+
 
 #### Observação
 
@@ -39,7 +39,7 @@ APP_DIR=./app
 # ### ### ### ### ### ### ### ### ### ###
 
 # Nginx
-VIRTUAL_HOST=tracker.local
+VIRTUAL_HOST=
 VIRTUAL_PORT=80
 
 # Certificação SSL
