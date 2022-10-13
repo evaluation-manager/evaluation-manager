@@ -5,6 +5,7 @@ function TextArea({ text, onChange,value,name,placeholder}) {
     return (
         <C.Container >
             <label htmlFor={name}>{ text}</label>
+            <br/>
             <textarea  
                 value={value}
                 name={name}

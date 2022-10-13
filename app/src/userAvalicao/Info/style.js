@@ -16,8 +16,15 @@ background: #fff;
   border:1px solid #CDD0E8;
  padding:25px;
   border-radius:20px;
-
+ 
 }
+.desativado{
+    background:pink;
+}
+.ativado{
+    background:yellow;
+}
+
 h1{
     color:#4D4D4D; 
 }
@@ -45,26 +52,7 @@ span,p{
 border: solid #CDD0E8 1px;
  
 }
-.comments input {
-width: 500px;
-display: block;
-padding: 10px;
-margin: 15px;
 
-}
-
-.comments textarea{
-    width: 500px;
-    height: 80px;
-    display: block;
-    margin: 15px;
-    padding: 10px;
-  
-}
-.comments button{
-margin: 10px;
-padding: 20px;
-}
 
 .notfound{
 margin: 150px;
@@ -94,24 +82,7 @@ canvas{
     width: 300px;
 
 }
-.comments{
-    margin: 12px;
-    
-}
-.comments input{
-    width: 300px;
-margin:22px;
-  
-}
-.comments textarea{
-   // display: inline-block;
-    width: 300px;
-    height: 40px;
-    margin:22px;
-}
-.comments button{
-    padding: 10px;
-}
+
 .comments span, p{
 display: none;
 }

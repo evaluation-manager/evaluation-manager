@@ -3,27 +3,27 @@ import styled from 'styled-components';
 export const Container = styled.div`
 *{
    //text-align:center;
-    display: flex;
    
+   margin: 20px;
 }
 label{
-padding: 10px;
+padding: 20px;
 color:#000;
 font-size:20px;
 text-align: center;
 font-weight: bold;
-margin: 15px;
-width:300px;
+
 }
 
 textarea{
-    width:400px;
-    height: 200px;
+    width:300px;
+    height: 80px;
     font-size:12px;
     border-radius:10px;
-    border:2px solid  #0A3764;
+    border:2px solid  #55A4F3;
     //background:#E1E2E3;
     font-weight: bold;
+    padding: 15px;
 }
 
 `;

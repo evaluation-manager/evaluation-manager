@@ -54,6 +54,7 @@ const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/c
             required
             name="name"
             value={name}
+            text="Seu nome"
             onChange={(e) => setName(e.target.value)}
           />
           
@@ -63,6 +64,7 @@ const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/c
             name="name"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            text="Seu email"
           />
           
 
@@ -72,6 +74,7 @@ const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/c
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Envie seu comentário"
+            text="Deixe seu comentário"
           />
        
           <Button text="Deixa seu comentário" 

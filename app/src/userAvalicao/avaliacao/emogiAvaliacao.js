@@ -11,7 +11,7 @@ import PhotoTriste from './sad.png'
 
 export const UserAvaliacao = () => {
   const { id } = useParams();
-  //const url = "http://localhost:5000/notas";
+ // const url = "http://localhost:5000/notas";
  const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades";
 
   const [totlle, setToglle] = useState(true);
@@ -37,7 +37,7 @@ export const UserAvaliacao = () => {
 
     const getThemeQuestions= async()=>{
       await fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
-           // await fetch('http://localhost:5000/themes/'+id) 
+         //  await fetch('http://localhost:5000/themes/'+id) 
          .then((Response)=>Response.json())
          .then((ResponseJson)=>(
           
@@ -61,14 +61,14 @@ export const UserAvaliacao = () => {
     const req = await fetch(url, {
       method: "POST",
       // headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(gradess),
-    });
+      body: JSON.stringify(gradess)
+    })
 
     const addNotas = await req.json();
     //carregamento de forma dinamica
     setNotas((prevOrgans) => [...prevOrgans, addNotas]);
     setToglle(false);
-   
+   ;
   };
   
   const status1 = () => {

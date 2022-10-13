@@ -37,16 +37,17 @@ import { Thanks } from '../userAvalicao/Info/thanks';
 
 
 export const Router = () => {
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(true);
     const [avaliacao, setAvaliacao] = useState(false);
 function  setar(){
          setLogin(true)
     }
     return (
         <C.Container>
-             <BrowserRouter>
              {login===true &&(
-             <div className='container'>
+             <BrowserRouter>
+           <div></div>
+           {/**   <div className='container'>
            
               <div className='itemnav'>
              <Navbar/>
@@ -58,6 +59,7 @@ function  setar(){
                 <div className='itemmain'>
 
         <Routes>
+            
                  <Route path='/' element={<Dashboard />} />
                                 
                 <Route path='/Login' element={<Login />} />
@@ -95,30 +97,37 @@ function  setar(){
                 <Route path='/Feedback' element={<Feedback/>}/>
                 
              {/*   <Route path='/Cadastro/Organ/Editar/:id' element={<Editar/>}/>*/} 
-
-
-             <Route path='/survey/:id' element={<UserAvaliacao/>}/>
+<Routes>
+      
+<Route path='/survey/:id' element={<UserAvaliacao/>}/>
 <Route path='Info' element={<InfoAvalicao/>}/>
 <Route path='*' element={<Notfound/>}/>
       
  <Route path='/grades/comments' element={<Comments/>}/>
 <Route path='/agradecimento' element={<Thanks/>}/>
+            
 
                         </Routes>
-                    </div>
+              {/**      </div>
                
                 </div>
-            )}
-            
-               {login===false && (
-                <>
-
-           <Login handleSubmit={setar}/>
-
-                </>
-            )} 
-
+           
+            */}
 </BrowserRouter>
-            </C.Container>
+
+)}
+            
+ {login===false && (
+ <>
+
+{/** <Login handleSubmit={setar}/>*/}
+</>
+)} 
+  
+
+
+
+
+          </C.Container>
     )
 }
