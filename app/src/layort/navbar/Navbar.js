@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import * as C from './style';
-//import {Link} from 'react-router-dom';
-//import {AiOutlineHome, AiOutlineUser, AiOutlineUnorderedList,AiOutlineStock,AiOutlineComment} from 'react-icons/ai'
-//import {BrowserRouter as Router} from 'react-router-dom';
 
 function Navbar(){
-
+const [logar, deslogar]=useState(true)
+function setar(){
+    deslogar(!logar)
+}
     return (
         <C.Container>
             <div className='navbar'>
-            <p>sistema de survey</p>
-      
+            <p>Sistema de survey</p>
+      {logar===true ? (
         <Link to="/">
-            Sair
+           <button onClick={setar}>Sair</button>
         </Link>
+      ):(
+        <>
+    <Link to="/login">
+           <button onClick={setar} >Login</button>
+        </Link>
+      
+        </>
+      )}
+        
         </div>
 
         </C.Container>
