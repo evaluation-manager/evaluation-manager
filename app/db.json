@@ -1,6 +1,17 @@
 {
   "avaliacoes": [
-
+    {
+      "question_id": 6,
+      "answer_id": 9,
+      "grades_id": "1",
+      "id": 1
+    },
+    {
+      "question_id": "",
+      "answer_id": "8",
+      "grades_id": "1",
+      "id": 2
+    }
   ],
   "grades": [],
   "notas": [

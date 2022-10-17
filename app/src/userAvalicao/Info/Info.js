@@ -4,15 +4,15 @@ import * as C from "./style";
 import { useParams } from "react-router-dom";
 import { Comments } from "./comments";
 import Button from "../../components/button/button";
-import Input from "../../components/input/input";
+
 
 export const InfoAvalicao = () => {
-  //  const urlA= "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes"
-  const urlA = "http://localhost:5000/avaliacoes";
+ //  const urlA= "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes"
+ const urlA = "http://localhost:5000/avaliacoes";
 
   const [theme, setTheme] = useState([]);
   const [totlle, setToglle] = useState(true);
-  // const [avaliacoes,setAvaliacoes]=useState([])
+   const [currente,setCurrente]=useState(0)
   //enviando para o post
   const { id } = useParams();
   const [question_id, setQuestion_id] = useState("");
@@ -72,7 +72,23 @@ export const InfoAvalicao = () => {
 
     //console.log("oi")
   }
+
+  //let currente=[0]
  
+let teste= theme.map((names)=>(
+    names.questions
+  
+))
+ 
+  let teste2= teste.map((names)=>(
+    names[currente]
+  
+))
+//console.log("oiii",teste2)
+function acrecentar(){
+  setCurrente(currente+1)
+}
+
   return (
     <C.Container>
       {totlle === false ? (
@@ -80,57 +96,36 @@ export const InfoAvalicao = () => {
       ) : (
         <form onSubmit={handleSumit}>
           <div className="survey">
-            {theme.map((tema, index) => (
-              <>
-                <span value={tema.id} key={index}>
-                  {tema.name}
-                </span>
+            
+{teste2.map((pergunta,index)=>(
 
-                {tema.questions.map((pergunta, index) => (
-                  <fieldset>
-                    <div className="Questions">
-                      <h2
-                         onChange={e=>setQuestion_id(pergunta.id)}
-                        name="question_id"
-                        key={index}
-                      >
-                        {pergunta.name} - {pergunta.id}
-                      </h2>
+  <>
+ <h3
+  key={index}>{pergunta.name}</h3>
 
-                      <div className="respostas">
-                        {pergunta.answers.map((resposta) => (
-                          
-                          <div className="Answers">
-                           
-                            <input 
-                            
-                              name={answer_id}
-                              key={resposta.id}
-                              id={resposta.id}
-                              value={answer_id[resposta.id]}
-                              //  value={resposta.id}
-                              type="checkbox"
-                             // text={resposta.name}
-                              // onChange={e=>setAnswers_id((prevState) => ({...prevState, [pergunta.id] : resposta.id }))}
-                              onChange={(e) => setAnswers_id(resposta.id)}
-                         />
-                              
-                           <label htmlFor="answer_id">{resposta.name}</label>
-                          
-                          </div>
-                          
-                        ))}
-                     
-                         <Button
-                                handleButton={() => handleValue(pergunta.id)}
-                                text="Enviar" 
-                                />
-                      </div>
-                    </div>
-                  </fieldset>
-                ))}
-              </>
-            ))}
+{pergunta.answers.map((resposta, index)=>(
+<>
+<fieldset>
+
+<input
+name={answer_id}
+ key={index} 
+ onChange={(e)=>setAnswers_id(e.target.value)}
+  value={resposta.id}
+   type="radio"/>
+<label key={index} 
+ onChange={e=>setQuestion_id(e.target.value)}>{resposta.name}</label>
+</fieldset>
+</>
+))}
+
+
+ <button onClick={acrecentar}>Próximo</button>
+
+ </>
+))}
+          
+        
           </div>
           <Button
         handleButton={AtualizarToglles}
@@ -157,3 +152,62 @@ export const InfoAvalicao = () => {
     text="Enviar" />
     
       */
+
+    
+    {/**  //teste para ver se cnsigo
+     
+      {theme.map((tema, index) => (
+              <>
+                <span value={tema.id} key={index}>
+                  {tema.name}
+                </span>
+
+                {tema.questions.map((pergunta, index) => (
+                  <fieldset>
+                    <div className="Questions">
+                      <h2
+                         onChange={e=>setQuestion_id(pergunta.id)}
+                        name="question_id"
+                        key={index}
+                      >
+                        {pergunta.name} - {pergunta.id}-{index}
+                      </h2>
+
+                      <div className="respostas">
+                        {pergunta.answers.map((resposta,index) => (
+                          
+                          <div className="Answers">
+                           
+                            <button
+                            onClick={()=>setAnswers_id(resposta.id)}
+                              name={answer_id}
+                              key={resposta.id}
+                              id={resposta.id}
+                           //   value={answer_id[resposta.id]}
+                               value={index}
+                             // type="checkbox"
+                             // text={resposta.name}
+                              // onChange={e=>setAnswers_id((prevState) => ({...prevState, [pergunta.id] : resposta.id }))}
+                            //  onChange={(e) => setAnswers_id(resposta.id)}
+                         >{resposta.name} - </button>
+                              
+                          {/**  <label htmlFor="answer_id">{resposta.name}</label>*
+                          
+             {/**            </div>
+                          
+                        ))}
+                     
+                         <Button
+                                handleButton={() => handleValue(pergunta.id)}
+                                text="Enviar" 
+                                />
+                      </div>
+                    </div>
+                  </fieldset>
+                ))}
+              </>
+            ))}
+     */}
+      
+     
+     

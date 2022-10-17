@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import * as C from "../layort/grid/Grid";
 //importando a barra de navegação
 import Navbar from "../layort/navbar/Navbar";
@@ -33,7 +33,7 @@ import { InfoAvalicao } from "../userAvalicao/Info/Info";
 import { Notfound } from "../userAvalicao/Info/NotFound";
 import { Comments } from "../userAvalicao/Info/comments";
 import { Thanks } from "../userAvalicao/Info/thanks";
-import PrivateRoute from "./PrivateRouter";
+//import PrivateRoute from "./PrivateRouter";
 //privando rotas
 
 export const Router = () => {
@@ -43,6 +43,8 @@ export const Router = () => {
 
   const [login, logado] = useState(false);
 
+  const [status,setStatus]=useState("Login")
+  //const navbar=useNavigate();
   function setar() {
     setAvaliacao(false);
     setSistema(true);
@@ -51,15 +53,28 @@ export const Router = () => {
 
   function logar(){
     logado(true)
-    //setAvaliacao(false);
-    //setSistema(false);
+    setAvaliacao(true);
+    setSistema(false);
+    setStatus("Sair")
+   // Alterar()
   }
+ 
+
+ /* function Alterar(){
   
+   navbar("/perfil")
+  }*/
   return (
     <C.Container>
         <>
-        <button onClick={logar}>Login</button>
-
+       
+     {/**  <button className="buttonVisible" onClick={logar}>
+          Login
+        </button>
+         */}  
+        <Navbar AlterarValor={logar}
+         Status={status}
+          />
         {login === true ?  <Login handleSubmit={setar}/> : ''}
       </>
       <BrowserRouter>
@@ -69,7 +84,7 @@ export const Router = () => {
           ) : (
             <>
               <div className="itemnav">
-                <Navbar />
+           {/** <Navbar />*/}     
               </div>
 
               <div className="itemsid">
