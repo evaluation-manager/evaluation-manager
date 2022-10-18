@@ -26,4 +26,4 @@ RUN chmod 777 node_modules
 EXPOSE 80
 
 # Inicia a aplicação em desenvolvimento (com live-reload)
-CMD npm run dev
+CMD npm start
