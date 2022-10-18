@@ -1,4 +1,4 @@
-# Tracker Front-end com Svelte
+# Avaliação Front-end com React
 
 Front-end utilizando a biblioteca react para a aplicação de avaliação.
 
