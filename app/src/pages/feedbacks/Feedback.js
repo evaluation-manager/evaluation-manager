@@ -20,26 +20,36 @@ export const Feedback=()=> {
           useEffect(() => {
             GetFeedBack()
           }, []);
-//console.log(feedback)
-          
+
+         //console.log(teste) 
     return (
         <C.Container>
             <div className='Card'>
                 <h2>Ùltimos 30 dias do mes de </h2>
-              {feedback.map((comentarios)=>(
                 <>
-                <Card
-                    text={comentarios.name}
-                    title={comentarios.content}
-                   // answer="Responder"
-                    email={comentarios.email}
-                />
-                </>
+           {/**   {feedback.map((comentarios,index)=>(
+            <>
+            <p>{comentarios.name}</p>
+             <p>{comentarios.content}</p>
+             <p>{comentarios.email}</p>
+             </>
+             
               ))}
-                
+               */} 
+                </>
                
         </div>
         </C.Container>
     )
 }
 export default Feedback;
+
+  {/** <Card
+                value={index}
+                key={index}
+                    text={comentarios.name}
+                    title={comentarios.content}
+                   // answer="Responder"
+                    email={comentarios.email}
+                />
+                */}

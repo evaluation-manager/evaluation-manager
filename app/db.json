@@ -7,10 +7,28 @@
       "id": 1
     },
     {
-      "question_id": "",
+      "question_id": 6,
       "answer_id": "8",
       "grades_id": "1",
       "id": 2
+    },
+    {
+      "question_id": 6,
+      "answer_id": "9",
+      "grades_id": "1",
+      "id": 3
+    },
+    {
+      "question_id": 6,
+      "answer_id": "8",
+      "grades_id": 23,
+      "id": 4
+    },
+    {
+      "question_id": 7,
+      "answer_id": "11",
+      "grades_id": 23,
+      "id": 5
     }
   ],
   "grades": [],
@@ -38,18 +56,16 @@
     {
       "name": "Turismo",
       "id": 1
-    },
+    }
+   
+  ],
+  "comments": [
     {
-      "name": "atuaizando",
-      "id": 2
-    },
-    {
-      "name": "criar",
-      "id": 3
-    },
-    {
-      "name": "limpa",
-      "id": 4
+      "content": "ggg",
+      "grades_id": 23,
+      "name": "gg",
+      "email": "gg",
+      "id": 1
     }
   ],
   "sectors": [

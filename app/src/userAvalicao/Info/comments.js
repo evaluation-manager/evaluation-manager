@@ -7,11 +7,12 @@ import Button from "../../components/button/button";
 import Input from "../../components/input/input";
 import TextArea from "../../components/textarea/TextArea";
 
+
 export const Comments = ({grades}) => {
  //const url="http://localhost:5000/comments"
 const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/comments";
 
-  const [grades_id, setGrades_id] = useState();
+  const [grades_id, setGrades_id] = useState(grades);
   const [content, setContent] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,9 +29,10 @@ const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/c
     const res = await fetch(url, {
       method: "POST",
       //headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(comments),
+      body: JSON.stringify(comments)
     });
     //console.log(comments)
+    //setComents(comments)
     setName("");
     setContent("");
     setEmail("");
@@ -80,7 +82,7 @@ const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/c
           <Button text="Deixa seu comentário" 
           onClick={enviarNota}
            />
-           <span>Se não quiser, basta fechar a página</span>
+          
         </form>
       </div>
     </C.Container>

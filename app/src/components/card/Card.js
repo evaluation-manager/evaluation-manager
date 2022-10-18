@@ -1,7 +1,7 @@
 import React from 'react';
 import * as C from './style';
 
-function Card({ text, title,answer,email }) {
+function Card({ text, title,email }) {
     return (
         <C.Container>
             <main className="Container">
@@ -9,7 +9,7 @@ function Card({ text, title,answer,email }) {
                     <h3>{title}</h3>
                     <p>{text}</p>
                     <span>{ email}</span>
-                    <button>{answer}</button>
+                   
                 </article>
             </main>
            

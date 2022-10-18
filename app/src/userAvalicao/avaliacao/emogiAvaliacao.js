@@ -68,7 +68,7 @@ export const UserAvaliacao = () => {
     //carregamento de forma dinamica
     setNotas((prevOrgans) => [...prevOrgans, addNotas]);
     setToglle(false);
-   ;
+    
   };
   
   const status1 = () => {
@@ -104,6 +104,7 @@ export const UserAvaliacao = () => {
     names.name
   ))
   //console.log(name)
+  //console.log(notas)
   return (
     <C.Container>
       {totlle === true ? (
@@ -138,7 +139,7 @@ export const UserAvaliacao = () => {
         </form>
         </div>
       ) : (
-        <InfoAvalicao />
+        <InfoAvalicao grades={23}/>
       )}
     </C.Container>
   );

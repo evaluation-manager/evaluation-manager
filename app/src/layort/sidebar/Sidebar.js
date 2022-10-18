@@ -109,7 +109,7 @@ function Sideber() {
                                     <RiFeedbackLine className='icon' />
                                     <p> Feedbacks   </p>
                                 </Link>
-                                <Link to="/Perfil">
+                             {/**    <Link to="/Perfil">
                                     <AiOutlineUser className='icon' />
                                     <p>Perfil </p>
                                 </Link>
@@ -117,7 +117,7 @@ function Sideber() {
                                     <RiComputerLine className='icon' />
                                     <p>Suporte    </p>
                                 </Link>
-        
+        */}
                             </ul>
                         </nav>
                         
