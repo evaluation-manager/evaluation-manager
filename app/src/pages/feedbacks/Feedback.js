@@ -4,52 +4,36 @@ import * as C from './style';
 
 export const Feedback=()=> {
     const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/comments";
-
-    const [feedback, setFeedback]=useState();
-  //  console.log(feedback)
+//const url ='http://localhost:5000/comentarios'
+    const [coment, setComent]=useState([]);
 
     const GetFeedBack=async()=>{
         fetch(url)
         .then((Response)=>Response.json())
         .then((ResponseJson)=>(
-            //console.log("oii",ResponseJson)
-          setFeedback(ResponseJson)
-        ))
-          }
-
+            setComent(ResponseJson)
+    ))
+}
           useEffect(() => {
             GetFeedBack()
           }, []);
 
-         //console.log(teste) 
     return (
-        <C.Container>
-            <div className='Card'>
-                <h2>Ùltimos 30 dias do mes de </h2>
-                <>
-           {/**   {feedback.map((comentarios,index)=>(
-            <>
-            <p>{comentarios.name}</p>
-             <p>{comentarios.content}</p>
-             <p>{comentarios.email}</p>
-             </>
-             
+        <C.Container>       
+          <h2>Comentários dos último 30 dias</h2>
+             {coment.map((comentarios,index)=>(
+              <Card
+                value={index}
+                key={index}
+                text={comentarios.name}
+                title={comentarios.content}
+                email={comentarios.email}
+                nota={comentarios.grades_id}
+                />
+                
               ))}
-               */} 
-                </>
-               
-        </div>
+                
         </C.Container>
     )
 }
 export default Feedback;
-
-  {/** <Card
-                value={index}
-                key={index}
-                    text={comentarios.name}
-                    title={comentarios.content}
-                   // answer="Responder"
-                    email={comentarios.email}
-                />
-                */}
