@@ -5,9 +5,9 @@ import * as C from "./style.js";
 //import { BiHappyAlt, BiHappyBeaming, BiSad } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { InfoAvalicao } from "../Info/Info.js";
-import PhotoSatisfeito from './happy.png'
-import PhotoFeliz from './fine.png'
-import PhotoTriste from './sad.png'
+//import PhotoSatisfeito from './happy.png'
+//import PhotoFeliz from './fine.png'
+//import PhotoTriste from './sad.png'
 
 export const UserAvaliacao = () => {
   const { id } = useParams();
@@ -117,21 +117,21 @@ export const UserAvaliacao = () => {
           <div className="conteudo">
             <div className="satisfeito">
               <button name="grades" value={grades} onClick={status1}>
-                <img alt="Satisfeito" src={PhotoSatisfeito} />
+                   {/**  <img alt="Satisfeito" src={PhotoSatisfeito} />*/}
                 <p>Satisfeito {filtsatisfeito.length}</p>
               </button>
             </div>
 
             <div className="legal">
               <button name="legal" value={grades} onClick={status2}>
-              <img alt="Legal" src={PhotoFeliz} />
+             {/**  <img alt="Legal" src={PhotoFeliz} />*/}
                 <p>Legal {filtlegal.length} </p>
               </button>
             </div>
 
             <div className="ruim">
               <button name="ruim" value={grades} onClick={status3}>
-              <img alt="Triste" src={PhotoTriste} />
+            {/**   <img alt="Triste" src={PhotoTriste} />*/}
                 <p>Ruim {filtlruim.length} </p>
               </button>
             </div>

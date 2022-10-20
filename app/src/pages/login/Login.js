@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
 import * as C from './style';
-import Photo from './Astronauta.png'
-import ButtonCad from '../../components/button/ButtonCad';
+//import Photo from './Astronauta.png'
+
 
 export const Login = ({handleSubmit}) => {
 
@@ -81,7 +81,7 @@ password:'123456'
                  */}       
                     </div>
        
-        <img src={Photo} alt='astronalta'/>
+       {/** <img src={Photo} alt='astronalta'/> */}
        
         </div>
         </C.Container>

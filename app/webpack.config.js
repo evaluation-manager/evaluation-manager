@@ -1,36 +1,60 @@
-//const path = require("path");
-const webpack = require('webpack');
-const MiniCssExtractPlugin=require('mini-css-extract-plugin')
-//const html
-const port=process.env.PORT || 80
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const MiniCssExtractPlugin=require('mini-css-extract-plugin')
+var path = require('path');
+var webpack = require("webpack");
+//const port=process.env.PORT || 80
 module.exports = {
   entry: "./src/index.js",
+  
+  mode: 'development',
   output: {
-    filename: "bundle.js",
-   // path: path.resolve(__dirname, "./dist")
+   path:path.resolve( __dirname+ "./dist"), 
+   filename: "bundle.js"
   },
-  mode:"development",
-  devServer:{
-
-  },
-  //para css
+ 
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      },
+        test: /\.js$/,
+       // loader:"babel-loader",
+        exclude:/node_modules/,
+        use: ["babel-loader"]
+    },{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }
     ],
   },
-  devServer: {
-    host: 'localhost',
-    port: port,
-    historyApiFallback: true,
-    open: true
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+},
+devServer: {
+  static: {
+      directory: path.join(__dirname, 'src'),
   },
+ host: 'localhost',
+  port: 80,
+  open: true,
+  hot: true,
+  liveReload: true
+},
+devtool: 'inline-source-map',
   plugins:[
-    new MiniCssExtractPlugin({
-        filename:'index.css'
+    new HtmlWebpackPlugin({
+      filename:'index.html',
+      template:"src/index.html"
     })
   ]
-};
+}
+
+  /*devServer: {
+    host: 'localhost',
+   // port: port,
+    historyApiFallback: true,
+    open: true
+  },*/
+  
+
