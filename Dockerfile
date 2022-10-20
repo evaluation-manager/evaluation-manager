@@ -11,7 +11,7 @@ WORKDIR /var/www/html
 RUN npm install --location=global npm@latest
 
 # Copia o arquivo 'package.json' e 'package-lock.json' (se disponível)
-ADD app/package*.json .
+ADD app/package.json .
 
 # Instala as dependências
 RUN npm i --silent

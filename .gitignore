@@ -1,5 +1,6 @@
-# JetBrains
-/.idea/
+# vscode
+.idea
 
 # Variáveis de ambiente
 .env
+app.
