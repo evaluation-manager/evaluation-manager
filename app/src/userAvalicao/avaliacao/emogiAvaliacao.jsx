@@ -18,22 +18,27 @@ export const UserAvaliacao = () => {
 
   const [grades, setGrades] = useState("");
   const [theme_id] = useState(id);
-  const [localization] = useState("48");
+  const [latitude,setLatitude] = useState("");
+  const [longitude,setLongitude] = useState("");
   //testes
   const [notas, setNotas] = useState([]);
   const [theme, setTheme]=useState([]);
 
-  useEffect(() => {
-    async function fetchDataNotas() {
-       await fetch(url)
+  
+  const fetchDataNotas=async() =>{
+        fetch(url)
        .then((Response)=>Response.json())
-       .then((ResponseJson)=>(
-       //console.log(ResponseJson)    
-        setNotas(ResponseJson)
-       ))
-//console.log(notas)    
-    }
-    fetchDataNotas()
+       .then((ResponseJson)=>{
+        if(ResponseJson ? ResponseJson.mensagem :""){
+         // console.log('oi',ResponseJson) 
+        }else{
+          setNotas(ResponseJson)
+         // console.log("oii, eu existo",ResponseJson)
+        }
+     
+       })
+}
+
 
     const getThemeQuestions= async()=>{
       await fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
@@ -45,9 +50,6 @@ export const UserAvaliacao = () => {
          ))
         }
         
-        getThemeQuestions()
-  }, [id]);
-
   const handleSumit = async (e) => {
     e.preventDefault();
 
@@ -55,7 +57,8 @@ export const UserAvaliacao = () => {
       //
       grades,
       theme_id,
-      localization,
+      latitude,
+      longitude
     };
 
     const req = await fetch(url, {
@@ -69,7 +72,7 @@ export const UserAvaliacao = () => {
     //carregamento de forma dinamica
     setNotas((prevOrgans) => [...prevOrgans, addNotas]);
     //aqui é o lugar certo
-   setToglle(false);
+  // setToglle(false);
    
   };
   
@@ -87,6 +90,15 @@ export const UserAvaliacao = () => {
    
   };
 
+  function sucessos (pos){
+  //  console.log(pos.coords.latitude,pos.coords.longitude )
+        setLatitude(pos.coords.latitude)
+        setLongitude(pos.coords.longitude)
+     }
+    navigator.geolocation.getCurrentPosition(sucessos)
+    
+  //console.log()
+
   let arrayNotas = notas.map((nota) => nota.grades);
 
   function bigsatisfeito(value) {
@@ -102,18 +114,19 @@ export const UserAvaliacao = () => {
   let filtsatisfeito = arrayNotas.filter(bigsatisfeito);
   let filtlruim = arrayNotas.filter(bigruim);
 
-  let name=theme.map((names)=>(names.name))
-
+  
   let positonid = notas.map((IdNota)=>(IdNota.id));
   let positionidUltimo = positonid[positonid.length -1]
-  
-  //console.log(positionidUltimo)
- //console.log('https://api.ipify.org/?format=jsonp&callback=getIP')
- /*function sucessos (pos){
-console.log(pos.coords.latitude,pos.coords.longitude )
- }
-navigator.geolocation.getCurrentPosition(sucessos)
-*/
+
+useEffect(() => {
+ fetchDataNotas()
+  getThemeQuestions()
+}, [id]);
+/**
+ * {filtsatisfeito? filtsatisfeito.length : 0}
+ * {filtlegal.length}
+ * {filtlruim.length}
+ */
   return (
     <C.Container>
       {totlle === true ? (
@@ -124,7 +137,7 @@ navigator.geolocation.getCurrentPosition(sucessos)
             <div className="satisfeito">
               <button name="grades" value={grades} onClick={status1}>
                     <img alt="Satisfeito" src={PhotoSatisfeito} />
-                <p>Satisfeito {filtsatisfeito.length}</p>
+                <p>Satisfeito {filtsatisfeito? filtsatisfeito.length : 0}</p>
               </button>
             </div>
 

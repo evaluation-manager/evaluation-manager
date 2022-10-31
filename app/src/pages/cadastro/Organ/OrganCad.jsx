@@ -17,15 +17,19 @@ export const CriarOrgan = () => {
         type:'',
         messagem:''
       })
-    
-    
-    
+     
     const getOrgans=async()=> {
         fetch(url)
         .then((Response) => Response.json())
-            .then((ResponseJson) => (
-            setOrgans(ResponseJson)
-        ))
+            .then((ResponseJson) => {
+                if(ResponseJson.status ===404 ){
+                   console.log('')
+                //   setOrgans()
+                }else{
+                 setOrgans(ResponseJson)
+                }
+          
+            })
     }
 
     const submit = async (e) => {
@@ -75,7 +79,7 @@ export const CriarOrgan = () => {
         useEffect(() => {
          getOrgans()   
         },[])
-
+//console.log( organs.length)
         return (
             <C.Container>
                 <h1>Escolha um orgão para cadastrar</h1>
@@ -103,14 +107,22 @@ export const CriarOrgan = () => {
                 </form>
                 </div>
                 <h2>Lista de orgãos cadastrados </h2>
-                    {organs.map((orgao) => (
+                {organs.length ? 
+                (
+       <>
+        {organs.map((orgao) => (
                 
-                        <Car
-                            key={orgao.id}
-                            to={"/Cadastro/Organ/Editar/"+orgao.id}
-                            text={orgao.name}
-                            HandleDelete={() => remove(orgao.id)} />
-                    ))}
+            <Car
+                key={orgao.id}
+                to={"/Cadastro/Organ/Editar/"+orgao.id}
+                text={orgao.name}
+                HandleDelete={() => remove(orgao.id)} />
+        ))}
+        </>
+       ):(
+<h3>Nenhum orgão foi cadastrado</h3>
+       )}
+              
                                  
             </C.Container>
         )

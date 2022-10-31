@@ -12,7 +12,7 @@ import Select from "../../components/select/Select";
 export const Dashboard = () => {
   const urlR = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes";
   //const urlR = "http://localhost:5000/avaliacoes";
-  const urlL = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions";
+ // const urlL = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions";
   //const urlL = "http://localhost:5000/questions";
 
 
@@ -22,31 +22,41 @@ export const Dashboard = () => {
   const [service, setService] = useState([]);
   const [questions, setQuestions] = useState([]);
   
-  useEffect(() => {
-    async function fetchDataAvaliacoes() {
-      const res = await fetch(urlR);
-      const data = await res.json();
-      setEvalution(data)
+  
+  const  fetchDataAvaliacoes=  async() =>{
+       fetch(urlR)
+      .then((Response)=>Response.json())
+      .then((Response)=>{
+      if(Response? Response.mensagem:""){
+      console.log(Response)
+      }else{
+        setEvalution(Response)
+      }
+      })
+    
 }
-    fetchDataAvaliacoes();
+    
 
 
-  }, []);
+
 
  // console.log(evalution);
 
  
-
+ useEffect(() => {
+  fetchDataAvaliacoes();
+}, []);
 //const nameNota=notasV;
   //console.log(notas)
   return (
     <C.Container>
     <h2>Dashboard de desempenho</h2>
-       <Select 
+     {/**   <Select 
    options={evalution}
    value=""
    text="Selecione um orgão"
    />
+   */}
       <div className="Cards1">
   
       

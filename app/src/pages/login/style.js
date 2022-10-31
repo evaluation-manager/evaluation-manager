@@ -27,7 +27,7 @@ border-radius:5px;
 .mensagem{
 background:#ff0000;
 color:#fff;
-box-shadow: 1px 5px 5px #ff0000;
+box-shadow: 1px 1px 1px #ff0000;
 text-align:center;
 
 }

@@ -38,13 +38,13 @@ import { Thanks } from "../userAvalicao/Info/thanks";
 //privando rotas
 
 const Private =({Item})=>{
-  const Logado=false;
+  const Logado=true;
 
   return Logado >0 ? <Item/> : <Login/>
 }
 
 export const Router = () => {
-  const [estado, setEstado]=useState(false)
+  const [estado, setEstado]=useState(true)
   return (
     <C.Container>
       <BrowserRouter>

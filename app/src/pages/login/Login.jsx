@@ -7,15 +7,7 @@ import * as C from './style';
 
 export const Login = () => {
 
-    const [user,setUser] = useState({
-       // name:"carlos"',
-     /*   email: '',
-        password:''
-*/
-
-email: '',
-password:''
-})
+    const [user,setUser] = useState([])
 
       const [status,setStatus] =useState({
         type:'',

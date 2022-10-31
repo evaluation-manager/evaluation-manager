@@ -30,9 +30,14 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
     const GetSector =async( )=> {
      fetch(urlR)
      .then((Response)=>Response.json()) 
-      .then((ResponseJson)=>(
-        setSectors(ResponseJson)
-      ))
+      .then((ResponseJson)=>{
+        if(ResponseJson.status===404){
+          'oi'
+        }else{
+          setSectors(ResponseJson)
+        }
+       
+    })
      
     }
    // fetchDataSector();
@@ -40,9 +45,14 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
     const getOrgans=async()=> {
       fetch(url)
       .then((Response) => Response.json())
-          .then((ResponseJson) => (
-          setOrgans(ResponseJson)
-      ))
+          .then((ResponseJson) => {
+            if(ResponseJson.status===404){
+              'oi'
+            }else{
+              setOrgans(ResponseJson)
+            }
+         
+          })
   }
 
   const submit = async (e) => {
@@ -95,10 +105,7 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
         body: JSON.stringify(sectors),
      })
     
-      //   getOrgans()
-    //setSectors(sectors)
      GetSector();
-     //setOrgans(addOrgan)
  
  }
 
@@ -145,12 +152,19 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
     
      </div>
      <h2>Lista de setores cadastrados </h2>
-        {sectors.map((setor) => (
+     {sectors.length? (
+      <>
+      {sectors.map((setor) => (
           <Car key={setor.id}
             to={"/Cadastro/Setor/Editar/"+setor.id}
             text={setor.name}
             HandleDelete={()=>remove(setor.id)}/>
         ))}
+      </>
+     ):(
+<h3>Nenhum setor cadastrado</h3>
+     )}
+        
 
     </C.Container>
   )
