@@ -39,12 +39,12 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
 
         const organs = {name:name}
 
-            const res = await   fetch(url, {
+            const res = await fetch(url, {
             method: "POST",
-          // headers: { "Content-Type": "application/json" },
+           headers: { "Content-Type": "application/json" },
             body: JSON.stringify(organs)
         });
-
+console.log(organs)
         const addOrgans = await res.json();
     //carregamento de forma dinamica
     setOrgans((prevOrgans) => [...prevOrgans, addOrgans])

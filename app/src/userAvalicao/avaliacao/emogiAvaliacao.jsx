@@ -12,8 +12,8 @@ import PhotoTriste from './bad.png'
 export const UserAvaliacao = () => {
   const { id } = useParams();
  // const url = "http://localhost:5000/grades";
- const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades";
-
+ //const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades";
+const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades"
   const [totlle, setToglle] = useState(true);
 
   const [grades, setGrades] = useState("");
@@ -41,7 +41,8 @@ export const UserAvaliacao = () => {
 
 
     const getThemeQuestions= async()=>{
-      await fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
+      //await fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
+      await fetch('http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
          //  await fetch('http://localhost:5000/themes/'+id) 
          .then((Response)=>Response.json())
          .then((ResponseJson)=>(
@@ -163,9 +164,3 @@ useEffect(() => {
     </C.Container>
   );
 };
-//{totlle ===true ?
-//<Comments/>
-/*{filtlruim.length}
-{filtlegal.length}
-{filtsatisfeito.length}
-*/
