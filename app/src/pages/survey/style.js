@@ -2,6 +2,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+h1,h2{
+  color: #55A4F3;
+  text-align:center;
+  margin: 5px;
+}
 .mensagem {
   // background: red;
    color: red;

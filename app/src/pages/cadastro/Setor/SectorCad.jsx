@@ -6,11 +6,12 @@ import Select from '../../../components/select/Select';
 import Car from '../../../components/card/Cad';
 
 export const CriarCad = () => {
-const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs"
+//const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs"
 //const url = "http://localhost:5000/organs";
-const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors';
-
+//const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors';
 //const urlR = "http://localhost:5000/sectors";
+const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs"
+const urlR="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors"
   //consultado
   const [organ, setOrgans] = useState([]);
 
@@ -32,7 +33,7 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
      .then((Response)=>Response.json()) 
       .then((ResponseJson)=>{
         if(ResponseJson.status===404){
-          'oi'
+          ''
         }else{
           setSectors(ResponseJson)
         }
@@ -47,7 +48,7 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
       .then((Response) => Response.json())
           .then((ResponseJson) => {
             if(ResponseJson.status===404){
-              'oi'
+              ''
             }else{
               setOrgans(ResponseJson)
             }
@@ -98,8 +99,9 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
   const remove = async(id) =>{
     // e.preventDefault()
    
-    const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors/${id}`, {
+ //   const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors/${id}`, {
     // const res = await fetch(`http://localhost:5000/sectors/${id}`, {
+      const res = await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors/${id}`, {
          method: "DELETE",
       // headers: { "Content-Type": "application/json" },
         body: JSON.stringify(sectors),
@@ -151,9 +153,10 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
          
     
      </div>
-     <h2>Lista de setores cadastrados </h2>
+    
      {sectors.length? (
       <>
+       <h2>Lista de setores cadastrados </h2>
       {sectors.map((setor) => (
           <Car key={setor.id}
             to={"/Cadastro/Setor/Editar/"+setor.id}
@@ -162,7 +165,7 @@ const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
         ))}
       </>
      ):(
-<h3>Nenhum setor cadastrado</h3>
+<h3>Nenhum setor foi cadastrado</h3>
      )}
         
 

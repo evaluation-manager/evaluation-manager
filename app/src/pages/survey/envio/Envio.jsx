@@ -17,8 +17,9 @@ export const Envio = () => {
 
   const [questionsTheme, setquestionsTheme]=useState([])
 
- //const [theme_id, settheme_id]=useState("");
- const [text, setText] = useState("http://localhost:81/survey/");
+ // http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes
+ //http://localhost:81/survey/
+ const [text, setText] = useState("http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/survey");
 
  const {id}=useParams()
 
@@ -26,10 +27,16 @@ export const Envio = () => {
     const getQuestionTheme = async () => {
      await fetch(url)
         .then((Response) => Response.json())
-        .then((ResponseJson) => (
-        setquestionsTheme(ResponseJson))
+        .then((ResponseJson) => {
+          if(ResponseJson.status ===404){
+                ''
+          }else{
+            setquestionsTheme(ResponseJson)
 
-        )
+          }
+      
+    
+      })
     }
 
     const getaddress = async () => {
@@ -48,7 +55,7 @@ export const Envio = () => {
 
 const handleId=(id)=>{
   //console.log(id)
-  setText('http://localhost:81/survey/'+id)
+  setText('http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/survey'+id)
 
 }
   return (
@@ -84,5 +91,3 @@ const handleId=(id)=>{
     </C.Container>
   );
 };
-
-  {/*https://semecmaceio.com/avaliacao.php?semec=3&dept=semec&topic= */}

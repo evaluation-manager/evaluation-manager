@@ -8,9 +8,9 @@ import Car from '../../../components/card/Cad';
 
 export const ServiceTypeCad = () => {
 
-   const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type';
+ //  const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type';
  // const urlR = "http://localhost:5000/services_type";
-  
+ const urlR='http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type';
   const [service_type, setService_type] = useState([]);
   
   const [name,setName]= useState("");
@@ -22,9 +22,14 @@ export const ServiceTypeCad = () => {
    const  GetServiceType= async()=>{
          fetch(urlR)
          .then((Response)=>Response.json())
-         .then((ResponseJson)=>(
-         setService_type(ResponseJson)  
-         )) 
+         .then((ResponseJson)=>{
+          if(ResponseJson.status===404){
+            ''
+          }else{
+            setService_type(ResponseJson)  
+          }
+         
+   }) 
              }
              
     
@@ -39,7 +44,7 @@ export const ServiceTypeCad = () => {
           
           const res = await fetch(urlR, {
             method: "POST",
-           headers: { "Content-Type": "application/json" },
+        //   headers: { "Content-Type": "application/json" },
             body: JSON.stringify(servicesType),
         });
         const addServicesType= await res.json();
@@ -62,8 +67,10 @@ export const ServiceTypeCad = () => {
     const remove = async(id) =>{
       // e.preventDefault()
    
+
      // const res = await fetch(`http://localhost:5000/services_type/${id}`, {
-        const res = await fetch(` http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type/${id}`, {
+    //    const res = await fetch(` http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type/${id}`, {
+      const res = await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type/${id}`, {
            method: "DELETE",
           
           //headers: { "Content-Type": "application/json" },
@@ -103,10 +110,10 @@ export const ServiceTypeCad = () => {
           
         </div> 
        
-        
-        <h2>Lista de tipos de Serviços criados</h2> 
-
-             {service_type.map((serviceT) => (
+{service_type.length? (
+<>
+<h2>Lista de tipos de Serviços criados</h2> 
+{service_type.map((serviceT) => (
                <Car
                to={"/Cadastro/Servico_tipo/Editar/"+serviceT.id}
                 key={serviceT.id}
@@ -115,6 +122,11 @@ export const ServiceTypeCad = () => {
 
                />
                 ))}
+</>
+):(
+<h3>Nenhum tipo de serviço foi cadastrado</h3>
+)}
+        
 
           
         </C.Container>

@@ -8,14 +8,16 @@ import Car from '../../../components/card/Cad';
 export const CriarTheme= () => {
  // const url = "http://localhost:5000/services_type"
   //const urlT="http://localhost:5000/themes"
-const url ="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type"
-const urlT="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes" 
+//const url ="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type"
+//const urlT="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes" 
+const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type"
+const urlT="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes" 
+
 const [serviceType, setServiceType]=useState([]);
   const [theme, setTheme] = useState([]);
 
   const [name,setName]=useState("")
   const [service_type_id, setServiceType_id] = useState("");
-const [hash,setHash]=useState("")
 
   const [status,setStatus] =useState({
     type:'',
@@ -26,18 +28,28 @@ const GetServiceT =async()=> {
 
   fetch(url)
 .then((Response)=>Response.json())
-.then((ResponseJson)=>(
-  setServiceType(ResponseJson)
-))
+.then((ResponseJson)=>{
+  if(ResponseJson.status ===404 ){
+''
+  }else{
+    setServiceType(ResponseJson)
+  }
+
+})
 
   }
   
    const GetTheme=async()=>{
     fetch(urlT)
     .then((Response)=>Response.json())
-    .then((ResponseJson)=>(
-      setTheme(ResponseJson)
-    ))
+    .then((ResponseJson)=>{
+      if(ResponseJson.status ===404 ){
+        ''
+      }else{
+        setTheme(ResponseJson)
+      }
+     
+   })
       }
     
     const submit = async(e) => {
@@ -49,7 +61,7 @@ const GetServiceT =async()=> {
        const theme = {
         name: name,
        service_type_id: service_type_id,
-     //  hash:hash
+   
       }
 
       const res = await fetch(urlT, {
@@ -83,7 +95,9 @@ setServiceType_id("")
   
     const remove = async(id) =>{
        //const res = await fetch(`http://localhost:5000/themes/${id}`, {
-       const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/${id}`, {
+     
+      // const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/${id}`, {
+        const res = await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/${id}`, {
            method: "DELETE",
          //headers: { "Content-Type": "application/json" },
            body: JSON.stringify(theme),
@@ -133,14 +147,22 @@ setServiceType_id("")
             </div>
               </div>
         
- <h2>Lista de temas criados</h2> 
-        {theme.map((temas) => (
+
+ {theme.length? (
+<>
+<h2>Lista de temas criados</h2> 
+{theme.map((temas) => (
           <Car  to={"/Perguntas/Themes/Editar/"+temas.id}
           key={temas.id}
             text={temas.name}
             HandleDelete={()=>remove(temas.id)}
           />
         ))}
+</>
+ ):(
+<h3>Nenhum tema foi cadastrado</h3>
+ )}
+        
         </C.Container>
     )
 }

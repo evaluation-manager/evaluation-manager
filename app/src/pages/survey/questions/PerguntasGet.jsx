@@ -10,10 +10,12 @@ import Car from '../../../components/card/Cad';
 
 export const PerguntasGet = () => {
 
-   const url=('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes')
+  // const url=('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes')
  // const url = ("http://localhost:5000/themes")
-  const urr=('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions')
+  //const urr=('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions')
   // const urr=("http://localhost:5000/questions")
+  const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes" 
+  const urr ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions" 
   //adicionando
   const [questions, setQuestions] = useState([]);
   const [theme, setTheme] = useState([]);
@@ -30,18 +32,27 @@ export const PerguntasGet = () => {
 const GetTheme=async()=>{
   fetch(url)
   .then((Response)=>Response.json())
-  .then((ResponseJson)=>(
-    setTheme(ResponseJson)
-  ))
+  .then((ResponseJson)=>{
+    if(ResponseJson.status ===404){
+      ''
+    }else{
+      setTheme(ResponseJson)
+    }
+  })
     }
 
      
 const GetQuestion=async()=>{
   fetch(urr)
   .then((Response)=>Response.json())
-  .then((ResponseJson)=>(
-    setQuestions(ResponseJson)
-  ))
+  .then((ResponseJson)=>{
+    if(ResponseJson.status ===404){
+      ''
+    }else{
+      setQuestions(ResponseJson)
+    }
+ 
+})
     }
 
   const submit =async (e) => {
@@ -56,7 +67,7 @@ const GetQuestion=async()=>{
 
     const res = await fetch(urr, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+    //  headers: { "Content-Type": "application/json" },
       body: JSON.stringify(questions),
     });
     const addQuestion = await res.json();
@@ -84,8 +95,9 @@ const GetQuestion=async()=>{
   };
   const remove = async(id) =>{
     // e.preventDefault()
- 
-     const res = await fetch(`http://local.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions/${id}`, {
+   
+    // const res = await fetch(`http://local.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions/${id}`, {
+      const res = await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions/${id}`, {
          method: "DELETE",
         //headers: { "Content-Type": "application/json" },
          body: JSON.stringify(questions),
@@ -130,14 +142,21 @@ const GetQuestion=async()=>{
           </div>
       </div>
      
- <h2>Lista de perguntas criados</h2> 
-      {questions.map((question) => (
+{questions.length? (
+<>
+<h2>Lista de perguntas criados</h2> 
+{questions.map((question) => (
           <Car  to={"/Perguntas/Questions/Editar/"+question.id}
           key={question.id}
             text={question.name}
          HandleDelete={()=>remove(question.id)}
         />
         ))}
+</>
+):(
+<h3>Nenhuma pergunta foi cadastrada</h3>
+)}
+     
     </C.Container>
   );
 };

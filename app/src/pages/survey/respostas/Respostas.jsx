@@ -8,10 +8,11 @@ import Car from '../../../components/card/Cad';
 
 export const Respostas = () => {
   //const url='http://localhost:5000/questions'
-   const url='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions'
+  // const url='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions'
    //const urr='http://localhost:5000/answers'
-    const urr='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/answers'
-    
+ //const urr='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/answers'
+    const url="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions"
+    const urr="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/answers"
     const [questions, setQuestions] = useState([]);
     const [answers,setAnswers]=useState([]);
 
@@ -25,17 +26,27 @@ export const Respostas = () => {
 const GetQuestion=async()=>{
   fetch(url)
   .then((Response)=>Response.json())
-  .then((ResponseJson)=>(
-    setQuestions(ResponseJson)
-  ))
+  .then((ResponseJson)=>{
+    if(ResponseJson.status ===404){
+      ''
+    }else{
+      setQuestions(ResponseJson)
+    }
+  
+})
     }
 
     const GetAnswer=async()=>{
       fetch(urr)
       .then((Response)=>Response.json())
-      .then((ResponseJson)=>(
-        setAnswers(ResponseJson)
-      ))
+      .then((ResponseJson)=>{
+        if(ResponseJson.status ===404){
+          ''
+        }else{
+          setAnswers(ResponseJson)
+        }
+      
+    })
         }
 
 const submit=async(e)=>{
@@ -48,7 +59,7 @@ const submit=async(e)=>{
     }
     const res = await fetch(urr, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+       // headers: { "Content-Type": "application/json" },
         body: JSON.stringify(answers),
       });
       const addR= await res.json();
@@ -74,7 +85,8 @@ const submit=async(e)=>{
     const remove = async(id) =>{
       // e.preventDefault()
    
-       const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/answers/${id}`, {
+      // const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/answers/${id}`, {
+      const res = await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/questions/${id}`, {
            method: "DELETE",
           //headers: { "Content-Type": "application/json" },
            body: JSON.stringify(questions),
@@ -122,15 +134,21 @@ const submit=async(e)=>{
       </div>
       </div>
 
-       <h2>Lista de Respostas criados</h2> 
-
-         {answers.map((opcoes) => (
+     
+{answers.length? (
+<>
+<h2>Lista de Respostas criados</h2> 
+{answers.map((opcoes) => (
              <Car key={opcoes.id}
              to={"/Perguntas/Answers/Editar/"+opcoes.id}
             text={opcoes.name}
            HandleDelete={()=>remove(opcoes.id)}
           />
         ))}
+</>
+):(
+<h3>Nehuma pergunta foi cadastrada</h3>
+)}
        
         </C.Container>
           

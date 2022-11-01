@@ -7,14 +7,17 @@ import Car from '../../../components/card/Cad';
 
 export const ServiceCad = () => {
  // const url = "http://localhost:5000/sectors";
- const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors"
+// const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors"
 
-  const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services';
+ // const urlR='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services';
   //const urlR = "http://localhost:5000/services";
 
-const urlS='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type';
+//const urlS='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type';
 //const urlS = "http://localhost:5000/services_type";
 
+const url =" http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors"
+const urlR=" http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services"
+const urlS=" http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services_type"
 
   const [sectors, setSectors] = useState([]);
   const [serviceType, setServiceType]=useState([]);
@@ -33,9 +36,13 @@ const urlS='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
   const GetSector =async( )=> {
     fetch(url)
     .then((Response)=>Response.json()) 
-     .then((ResponseJson)=>(
+     .then((ResponseJson)=>{
+      if(ResponseJson.status===404){
+          ''
+      }else{
        setSectors(ResponseJson)
-     ))
+      }
+  })
     
    }
 
@@ -43,20 +50,28 @@ const urlS='http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/se
 
     fetch(urlR)
 .then((Response)=>Response.json())
-.then((ResponseJson)=>(
-setService(ResponseJson)
-))
+.then((ResponseJson)=>{
+if(ResponseJson.status===404){
+  ''
+}else{
+  setService(ResponseJson)
+}
+
+ })
  }
 
 const GetServiceType =async()=> {
 
   fetch(urlS)
 .then((Response)=>Response.json())
-.then((ResponseJson)=>(
+.then((ResponseJson)=>{
+if(ResponseJson.status===404){
+  ''
+}else{
   setServiceType(ResponseJson)
-))
 
 }
+})}
   
 
   const submit = async (e) => {
@@ -110,9 +125,9 @@ const GetServiceType =async()=> {
 
   const remove = async(id) =>{
  
-     const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services/${id}`, {
+    // const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services/${id}`, {
      // const res = await fetch(`http://localhost:5000/services/${id}`, {
-
+      const res = await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/services/${id}`, {
       
          method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -171,8 +186,11 @@ const GetServiceType =async()=> {
 
    
     
- <h2>Lista de Serviços criados</h2> 
-        {services.map((service) => (
+
+ {services.length?(
+<>
+<h2>Lista de Serviços criados</h2> 
+{services.map((service) => (
           <Car
           to={"/Cadastro/Servico/Editar/" +service.id}
             key={service.id}
@@ -180,6 +198,10 @@ const GetServiceType =async()=> {
             HandleDelete={()=>remove(service.id)}
           />
         ))}
+</>
+ ):(
+<h3>Nenhum serviço cadastrado</h3>
+ )}
 
       
     </C.Container>
