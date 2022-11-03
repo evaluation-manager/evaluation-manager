@@ -41,7 +41,7 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
 
             const res = await fetch(url, {
             method: "POST",
-           headers: { "Content-Type": "application/json" },
+          // headers: { "Content-Type": "application/json" },
             body: JSON.stringify(organs)
         });
 console.log(organs)

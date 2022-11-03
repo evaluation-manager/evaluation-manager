@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import * as C from "../layort/grid/Grid";
 //importando a barra de navegação
@@ -36,15 +36,22 @@ import { Comments } from "../userAvalicao/Info/comments";
 import { Thanks } from "../userAvalicao/Info/thanks";
 
 //privando rotas
+import { AuthContext } from "../context/ContextAuth";
 
 const Private =({Item})=>{
-  const Logado=true;
+  const {logado}=useContext(AuthContext)
+  //console.log("vendo",logado)
 
-  return Logado >0 ? <Item/> : <Login/>
+  const InLogado=logado;
+
+  return InLogado >0 ? <Item/> : <Login/>
 }
 
 export const Router = () => {
-  const [estado, setEstado]=useState(true)
+  const {logado}=useContext(AuthContext)
+
+  const [estado]=useState(logado)
+ // console.log(logado)
   return (
     <C.Container>
       <BrowserRouter>

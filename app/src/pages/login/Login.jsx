@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, {useContext } from 'react';
+import { AuthContext } from '../../context/ContextAuth';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
 import * as C from './style';
@@ -6,38 +7,13 @@ import * as C from './style';
 
 
 export const Login = () => {
+//alterando valor
+    const {logado,setLogado} = useContext(AuthContext)
 
-    const [user,setUser] = useState([])
-
-      const [status,setStatus] =useState({
-        type:'',
-        messagem:''
-      })
-
-   const handleValidar=(e)=>{
-
-    e.preventDefault()   
-  //  handleSubmit()
- if(!validation()) return  ;
- handleSubmit()
+   const handleValidar=()=>{
+setLogado(true)
 }
-
           
-        function validation (){
-          
-             if(!user.email)
-             return setStatus({
-               type:'error',
-              messagem: 'Necessário preencher o campo email'});
-          
-              if(!user.password)
-              return setStatus({
-                type:'error',
-               messagem: 'Necessário preencher o campo senha'});
-          
-             return true;
-          }
-
     return(
         <C.Container>
             <div className='login'>
@@ -45,35 +21,24 @@ export const Login = () => {
             <div className='dados'>
                 
                     <h2>Realize o login</h2>
-    <div className='mensagem'>
-    {status.type==='sucess' ? <p>
-    {status.messagem}</p> : ''}
-    {status.type==='error' ? <p>
-    {status.messagem}</p> : ''}
-    </div>
+
          <Input text="Email"
         name="email"
-        value={user.email}
+       // value={user.email}
         placeholder="Informe seu email"
        
         />
 
         <Input text="Senha"
         placeholder="Informe a senha"
-        value={user.password}
+       // value={user.password}
         name="passwrod"
        
         />
         <Button  handleButton={handleValidar} text="Entrar"
                     />
-             {/*    <div className='Esquece'> 
-                    <span>Esquece senha</span> 
-                    <ButtonCad text={"Cadastra-se"}/>
+              
                     </div>
-                 */}       
-                    </div>
-       
-       {/** <img src={Photo} alt='astronalta'/> */}
        
         </div>
         </C.Container>
