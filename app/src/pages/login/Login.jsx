@@ -1,17 +1,37 @@
-import React, {useContext } from 'react';
+import React, {useContext, useState } from 'react';
 import { AuthContext } from '../../context/ContextAuth';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
 import * as C from './style';
+import { useNavigate } from 'react-router-dom';
 //import Photo from './Astronauta.png'
 
 
 export const Login = () => {
-//alterando valor
+   
+    const [email, setEmail]=useState('')
+    const [password,setPassword]=useState('')
+  const natigate=useNavigate()
     const {logado,setLogado} = useContext(AuthContext)
 
    const handleValidar=()=>{
-setLogado(true)
+    let userEmail="suporte@gmail.com"
+    let userSenha=12345678
+
+if(email===userEmail && password===userSenha ){
+    console.log("tudo certo")
+}else if(email!=userEmail){
+    console.log("email errado")
+}else if(password !=userSenha){
+    console.log("senha errada")
+}else if(email!=userEmail && password !=userSenha ){
+    console.log("tudo errado")
+}else{
+    console.log("caiu aqui")
+    setLogado(true)
+    natigate("/Cadastro/Organ")
+}
+
 }
           
     return(
@@ -24,16 +44,16 @@ setLogado(true)
 
          <Input text="Email"
         name="email"
-       // value={user.email}
+       value={email}
         placeholder="Informe seu email"
-       
+        onChange={(e)=>setEmail(e.target.value)}
         />
 
         <Input text="Senha"
         placeholder="Informe a senha"
-       // value={user.password}
+        value={password}
         name="passwrod"
-       
+       onChange={(e)=>setPassword(e.target.value)}
         />
         <Button  handleButton={handleValidar} text="Entrar"
                     />

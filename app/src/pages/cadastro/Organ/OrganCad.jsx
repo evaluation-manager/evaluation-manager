@@ -44,7 +44,7 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
           // headers: { "Content-Type": "application/json" },
             body: JSON.stringify(organs)
         });
-console.log(organs)
+//console.log(organs)
         const addOrgans = await res.json();
     //carregamento de forma dinamica
     setOrgans((prevOrgans) => [...prevOrgans, addOrgans])

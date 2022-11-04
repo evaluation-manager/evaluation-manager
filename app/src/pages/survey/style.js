@@ -15,12 +15,13 @@ h1,h2{
    display:flex;
    background:#fff;
   // box-shadow: 1px 5px 5px #fff;
-border:solid 1px #000;
+//border:solid 1px #000;
 }
 form{
-display: flex;
-//border:solid 1px #000;
 
+display: block;
+border:solid 1px #000;
+text-align:center;
 }
 
 .editForm{

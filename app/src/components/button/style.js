@@ -14,7 +14,7 @@ button{
 }
 
 .ButtonBlue{
-    width: 350px;
+    width: 300px;
 }
 
 .ButtonSearch{

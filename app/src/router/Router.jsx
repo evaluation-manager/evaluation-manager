@@ -50,8 +50,8 @@ const Private =({Item})=>{
 export const Router = () => {
   const {logado}=useContext(AuthContext)
 
-  const [estado]=useState(logado)
- // console.log(logado)
+  const estado=logado;
+ //console.log(estado)
   return (
     <C.Container>
       <BrowserRouter>

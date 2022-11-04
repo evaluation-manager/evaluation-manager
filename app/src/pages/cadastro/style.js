@@ -12,9 +12,9 @@ h1,h2{
 }
 
 form{
-display: flex;
+display: block;
 border:solid 1px #000;
-//margin-top: 20px;
+text-align:center;
 
 }
 
