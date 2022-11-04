@@ -67,7 +67,7 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
       // headers: { "Content-Type": "application/json" },
       body: JSON.stringify(gradess)
     })
-
+//console.log(gradess)
 //setToglle(false);
     const addNotas = await req.json();
     //carregamento de forma dinamica
@@ -98,7 +98,7 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
      }
     navigator.geolocation.getCurrentPosition(sucessos)
     
-  //console.log()
+  console.log(notas)
 
   let arrayNotas = notas.map((nota) => nota.grades);
 
