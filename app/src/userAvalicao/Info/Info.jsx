@@ -6,9 +6,9 @@ import { Comments } from "./comments";
 
 
 export const InfoAvalicao = ({grades}) => {
-  // const urlA= "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes"
+  const urlA= "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes"
   //const urlA = "http://localhost:5000/avaliacoes";
-  const urlA ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes";
+ // const urlA ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes";
  
   const [theme, setTheme] = useState([]);
   const [totlle, setToglle] = useState(true);
@@ -26,8 +26,8 @@ export const InfoAvalicao = ({grades}) => {
 
   useEffect(() => {
     const getThemeQuestions = async () => {
-        await fetch("http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/questions/"+id)
-     // await fetch("http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/questions/"+ id)
+        //await fetch("http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/questions/"+id)
+      await fetch("http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/questions/"+ id)
         // await fetch('http://localhost:5000/themes/'+id)
         .then((Response) => Response.json())
         .then((ResponseJson) =>

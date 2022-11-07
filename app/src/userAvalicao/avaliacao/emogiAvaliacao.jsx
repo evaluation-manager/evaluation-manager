@@ -12,8 +12,8 @@ import PhotoTriste from './bad.png'
 export const UserAvaliacao = () => {
   const { id } = useParams();
  // const url = "http://localhost:5000/grades";
- //const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades";
-const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades"
+const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades";
+//const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/grades"
   const [totlle, setToglle] = useState(true);
 
   const [grades, setGrades] = useState("");
@@ -41,8 +41,8 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
 
 
     const getThemeQuestions= async()=>{
-      //await fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
-      await fetch('http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
+      await fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
+     // await fetch('http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/'+id)
          //  await fetch('http://localhost:5000/themes/'+id) 
          .then((Response)=>Response.json())
          .then((ResponseJson)=>(
@@ -50,7 +50,8 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
          setTheme(ResponseJson)
          ))
         }
-        
+     //   console.log(notas)
+
   const handleSumit = async (e) => {
     e.preventDefault();
 
@@ -73,7 +74,7 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
     //carregamento de forma dinamica
     setNotas((prevOrgans) => [...prevOrgans, addNotas]);
     //aqui é o lugar certo
-  // setToglle(false);
+  setToglle(false);
    
   };
   
@@ -94,11 +95,21 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
   function sucessos (pos){
   //  console.log(pos.coords.latitude,pos.coords.longitude )
         setLatitude(pos.coords.latitude)
+        console.log(pos.coords.latitude)
         setLongitude(pos.coords.longitude)
+        console.log(pos.coords.longitude)
      }
     navigator.geolocation.getCurrentPosition(sucessos)
     
-  console.log(notas)
+ //console.log(notas)
+ let teste= notas.map((lat)=>(
+  lat.latitude
+ ))
+
+console.log(teste)
+console.log(notas[0])
+//let lati={notas teste ? 'sim':'não'}
+
 
   let arrayNotas = notas.map((nota) => nota.grades);
 

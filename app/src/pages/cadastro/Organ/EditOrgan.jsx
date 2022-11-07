@@ -8,6 +8,7 @@ import * as C from '../style';
 export const Editar = () => {
   // const url = "http://localhost:5000/organs"; 
 const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs"
+//const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs"
     const [organs, setOrgans] = useState([]);
    const [name, setName] = useState("");
 
@@ -17,7 +18,7 @@ const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/org
    useEffect(() => {      
    const getOrgans =async()=>{
          // await fetch("http://localhost:5000/organs/"+id)
-        await  fetch(url+id)
+        await  fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs/'+id)
             .then((Response) => Response.json())
             .then((ResponseJson) => (
                // console.log(ResponseJson)
@@ -33,7 +34,7 @@ const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/org
    
     e.preventDefault();
  
- await fetch(url+id, {
+ await fetch('http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs/'+id, {
   //await fetch("http://localhost:5000/organs/"+id, {
       method: "PUT",
     //headers: { "Content-Type": "application/json" },

@@ -97,8 +97,6 @@ const urlR="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
   }
   
   const remove = async(id) =>{
-    // e.preventDefault()
-   
  //   const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors/${id}`, {
     // const res = await fetch(`http://localhost:5000/sectors/${id}`, {
       const res = await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors/${id}`, {

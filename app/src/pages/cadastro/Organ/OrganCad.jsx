@@ -7,7 +7,7 @@ import Car from '../../../components/card/Cad';
 
 export const CriarOrgan = () => {
    // const url = "http://localhost:5000/organs";
-  // const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs";
+ // const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs";
 const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs"
    //pegando o valor do orgao para ser rederizado
     const [organs, setOrgans] = useState([]);
@@ -65,7 +65,6 @@ const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliac
 
     const remove = async (id) => {
     
-
      // const res = await fetch(`http://localhost:5000/organs/${id}`, {
         // const res = await fetch(`http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs/${id}`, {
           const res=await fetch(`http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs/${id}`,{

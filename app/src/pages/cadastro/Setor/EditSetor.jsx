@@ -11,8 +11,9 @@ import ButtonCad from '../../../components/button/ButtonCad';
 export const EditarSetor = () => {
   const url="http://local.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs"
   //const url = "http://localhost:5000/organs";
+ // const url =' http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs'
  const urlR='http://local.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors';
-
+//const urlR='http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors'
  // const urlR = "http://localhost:5000/sectors";
   //consultado
   const [organ, setOrgans] = useState([]);
@@ -23,41 +24,38 @@ export const EditarSetor = () => {
   const [organ_id, setOrgan_id] = useState("");
 
   const {id}=useParams()
-  //sector
-  //console.log('oi',organ)
+ 
   useEffect(() => {
+    const getOrgans = async () => {
+    
+      await fetch("http://local.avaliacao.online.maceio.al.gov.br/api/avaliacoes/organs")
+      // await fetch("http://localhost:5000/organs/")
+           .then((Response) => Response.json())
+           .then((ResponseJson) => {
+           
+          setOrgans(ResponseJson)
+           })
+   
+       }
     const GetSector = async () => {
     
-     await fetch(urlR+id)
+     await fetch('http://local.avaliacao.online.maceio.al.gov.br/api/avaliacoes/sectors'+id)
     // await fetch("http://localhost:5000/sectors/"+id)
         .then((Response) => Response.json())
         .then((ResponseJson) => {
-
-       setSectors(ResponseJson)
- 
+         setSectors(ResponseJson)
         })
 
     }
     
-    const getOrgans = async () => {
     
-    await fetch(url)
-    // await fetch("http://localhost:5000/organs/")
-         .then((Response) => Response.json())
-         .then((ResponseJson) => {
-         
-        setOrgans(ResponseJson)
-   
-         })
- 
-     }
     getOrgans()
     
      GetSector()
 }, [id])
   //console.log(sectors)
   
-  //console.log(nameSetor)
+  console.log("oi",organ)
   const Edit = async e => {
    
     e.preventDefault();
@@ -69,7 +67,7 @@ export const EditarSetor = () => {
     //headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, organ_id})
     }).then((Response) => Response.json())
-   .then((ResponseJson) => {
+       .then((ResponseJson) => {
       setSectors(ResponseJson)
     //  console.log(ResponseJson)
     })
