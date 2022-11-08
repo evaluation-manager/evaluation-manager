@@ -11,8 +11,8 @@ import TextArea from "../../components/textarea/TextArea";
 export const Comments = ({grades}) => {
  //const url="http://localhost:5000/comments"
  //http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/themes/
-//const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/comments";
-const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/comments";
+const url = "http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/comments";
+//const url ="http://homologacao.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/comments";
   const [grades_id, setGrades_id] = useState(grades);
   const [content, setContent] = useState("");
   const [name, setName] = useState("");

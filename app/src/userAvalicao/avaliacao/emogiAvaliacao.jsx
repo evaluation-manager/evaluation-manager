@@ -95,21 +95,29 @@ const url="http://local.api.avaliacao.online.maceio.al.gov.br/api/avaliacoes/gra
   function sucessos (pos){
   //  console.log(pos.coords.latitude,pos.coords.longitude )
         setLatitude(pos.coords.latitude)
-        console.log(pos.coords.latitude)
+        //console.log(pos.coords.latitude)
         setLongitude(pos.coords.longitude)
-        console.log(pos.coords.longitude)
+       // console.log(pos.coords.longitude)
      }
     navigator.geolocation.getCurrentPosition(sucessos)
     
  //console.log(notas)
- let teste= notas.map((lat)=>(
+ let latMap= notas.map((lat)=>(
   lat.latitude
  ))
 
-console.log(teste)
-console.log(notas[0])
-//let lati={notas teste ? 'sim':'não'}
+ let logMap= notas.map((lat)=>(
+  lat.longitude
+ ))
 
+let filtrarLatitude=latMap.filter(lat=> lat ==latitude )
+let filtrarLongitude=logMap.filter(log=> log ==longitude)
+
+if(filtrarLatitude==latitude && filtrarLongitude==longitude){
+  console.log("Memso endereço")
+ // alert("Voce já participou")
+ 
+}
 
   let arrayNotas = notas.map((nota) => nota.grades);
 
@@ -130,15 +138,12 @@ console.log(notas[0])
   let positonid = notas.map((IdNota)=>(IdNota.id));
   let positionidUltimo = positonid[positonid.length -1]
 
+
 useEffect(() => {
  fetchDataNotas()
   getThemeQuestions()
 }, [id]);
-/**
- * {filtsatisfeito? filtsatisfeito.length : 0}
- * {filtlegal.length}
- * {filtlruim.length}
- */
+
   return (
     <C.Container>
       {totlle === true ? (

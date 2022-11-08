@@ -54,26 +54,26 @@ export const InfoAvalicao = ({grades}) => {
      // headers: { "Content-Type": "application/json" },
       body: JSON.stringify(avaliacao),
     });
-    
+  
   };
 
   let themaQuestion = theme.map((names) => names.questions);
   let QuestionsResQtd = themaQuestion.map((names) => names.length);
 
   let QuestionsRes = themaQuestion.map((names) => names[currente]);
-
+console.log(QuestionsRes )
 
   function acrecentar(id) {
     setCurrente(currente + 1);
     setQuestion_id(id);
     atualizarNome()
-    setAnswers_id("")
+   // setAnswers_id("")
   }
-
+ 
   function atualizarNome(){
     if(QuestionsResQtd-1===currente){
      setTexto("Finalizar")
-     setToglle(!totlle);
+   //  setToglle(!totlle);
   
     }
    
